@@ -23,9 +23,9 @@ public class RemoveElements {
     public ListNode removeElements(ListNode head, int val) {
         ListNode currentNode = head;
         ListNode prevNode = null;
-        while(currentNode != null) {
-            if(currentNode.val == val) {
-                if(prevNode != null) {
+        while (currentNode != null) {
+            if (currentNode.val == val) {
+                if (prevNode != null) {
                     prevNode.next = currentNode.next;
                 } else {
                     head = head.next;
