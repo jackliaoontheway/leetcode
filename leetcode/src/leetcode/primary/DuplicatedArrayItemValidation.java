@@ -12,7 +12,7 @@ public class DuplicatedArrayItemValidation {
 
 	public static void main(String[] args) {
 		int[] array = { 1, 2, 3, 4, 1 };
-		System.out.println(validateDuplicatedArrayItem2(array));
+		System.out.println(validateDuplicatedArrayItem(array));
 	}
 
 	public static boolean validateDuplicatedArrayItem2(int[] array) {
