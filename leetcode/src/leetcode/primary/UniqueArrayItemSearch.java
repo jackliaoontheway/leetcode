@@ -19,7 +19,7 @@ import java.util.Set;
 public class UniqueArrayItemSearch {
 
 	public static void main(String[] args) {
-		int[] array = { 2, 2, 1, 1, 3, 4, 4 };
+		int[] array = { 2, 2, 1, 1, 5, 4, 4 };
 		System.out.println(getUniqueArrayItem3(array));
 	}
 
