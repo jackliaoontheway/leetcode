@@ -1,7 +1,6 @@
 package leetcode.primary.tree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 二叉树的后序遍历
@@ -41,5 +40,70 @@ public class PostorderTraversal {
             iterator(result, root.right);
         }
         result.add(root.val);
+    }
+
+
+    /**
+     * 第二种解决方案 使用循环
+     *
+     * @param root
+     * @return
+     */
+    public List<Integer> postorderTraversal2(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        Set<TreeNode> set = new HashSet<>();
+        while (true) {
+            if (root.left != null) {
+                root = root.left;
+                continue;
+            }
+
+            if (!set.contains(root)) {
+                set.add(root);
+                result.add(root.val);
+            }
+
+            if (root.right != null) {
+                root = root.right;
+                continue;
+            }
+            if (!stack.isEmpty()) {
+                root = stack.pop();
+            } else {
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 第三种解决方案 使用Stack
+     *
+     * @param root
+     * @return
+     */
+    public List<Integer> postorderTraversal3(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                stack.add(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            result.add(current.val);
+            current = current.right;
+        }
+        return result;
     }
 }
