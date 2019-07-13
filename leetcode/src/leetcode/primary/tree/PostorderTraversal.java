@@ -63,15 +63,18 @@ public class PostorderTraversal {
                 continue;
             }
 
-            if (!set.contains(root)) {
-                set.add(root);
-                result.add(root.val);
-            }
+            stack.push(root);
 
             if (root.right != null) {
                 root = root.right;
                 continue;
             }
+
+            if (!set.contains(root)) {
+                set.add(root);
+                result.add(root.val);
+            }
+
             if (!stack.isEmpty()) {
                 root = stack.pop();
             } else {
