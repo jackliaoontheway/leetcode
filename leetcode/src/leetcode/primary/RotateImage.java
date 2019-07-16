@@ -1,11 +1,10 @@
 package leetcode.primary;
 
 /**
- * 有效的数独
+ * 旋转图像
  *
  */
-public class UniqueNumber {
-	
+public class RotateImage {
 	//TODO
 	public static void main(String[] args) {
 		
