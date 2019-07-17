@@ -5,8 +5,41 @@ package leetcode.primary;
  *
  */
 public class RotateImage {
-	//TODO
-	public static void main(String[] args) {
-		
-	}
+
+	public static void main(String[] args)
+    {
+        int array[][] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+
+        int result[][] = roatete90(array);
+        
+        for (int i = 0; i < result.length; i++)
+        {
+            for(int j = 0; j < result[i].length; j++) {
+                System.out.print(result[i][j]);
+                System.out.print(",");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void roatete90(int[][] array)
+    {
+
+        int[][] result = new int[array.length][array[0].length];
+
+        for (int i = 0; i < array.length; i++)
+        {
+            for(int j = 0; j < array[i].length; j++) {
+                result[j][array[i].length - 1 - i] = array[i][j];
+            }
+        }
+        
+        for (int i = 0; i < array.length; i++)
+        {
+            for(int j = 0; j < array[i].length; j++) {
+            	array[i][j] = result[i][j];
+            }
+        }
+
+    }
 }
