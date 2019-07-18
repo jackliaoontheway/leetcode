@@ -1,4 +1,4 @@
-package leetcode.primary;
+package leetcode.primary.array;
 
 /**
  * 旋转图像
@@ -10,12 +10,12 @@ public class RotateImage {
     {
         int array[][] = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
 
-        int result[][] = roatete90(array);
+         roatete90(array);
         
-        for (int i = 0; i < result.length; i++)
+        for (int i = 0; i < array.length; i++)
         {
-            for(int j = 0; j < result[i].length; j++) {
-                System.out.print(result[i][j]);
+            for(int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j]);
                 System.out.print(",");
             }
             System.out.println();

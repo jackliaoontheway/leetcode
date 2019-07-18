@@ -1,4 +1,4 @@
-package leetcode.primary;
+package leetcode.primary.array;
 
 public class StringSustring {
 	public static void main(String[] args) {

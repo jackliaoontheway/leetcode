@@ -1,4 +1,4 @@
-package leetcode.primary;
+package leetcode.primary.array;
 
 /**
  * 有效的数独
