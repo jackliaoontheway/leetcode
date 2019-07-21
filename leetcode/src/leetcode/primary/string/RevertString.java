@@ -5,16 +5,15 @@ public class RevertString {
 	public static void main(String[] args) {
 
 		char[] strings = { 'h', 'e', 'l', 'l', 'o' };
-		revert(strings);
+		revert2(strings);
 		for (int i = 0; i < strings.length; i++) {
 			System.out.print(strings[i] + ",");
 		}
 	}
 
 	/**
-	 * 我的解决方案
+	 * 第一种解决方案
 	 * 
-	 * @param strings
 	 */
 	private static void revert(char[] strings) {
 		int index = strings.length / 2;
@@ -27,19 +26,13 @@ public class RevertString {
 	}
 
 	/**
-	 * 第二种解决方案
-	 * 
-	 * @param s
+	 * 第二种解决方案 使用双指针法
 	 */
-	public void reverseString2(char[] s) {
-		int low = 0;
-		int high = s.length - 1;
-		while (low <= high) {
-			char t = s[high];
-			s[high] = s[low];
-			s[low] = t;
-			low++;
-			high--;
+	private static void revert2(char[] strings) {
+		for (int i = 0, x = (strings.length - 1); i < x; i++, x--) {
+			char temp = strings[i];
+			strings[i] = strings[x];
+			strings[x] = temp;
 		}
 	}
 
