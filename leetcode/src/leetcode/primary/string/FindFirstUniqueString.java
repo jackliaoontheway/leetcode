@@ -5,10 +5,15 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+
+/**
+ * 字符串中的第一个唯一字符
+ *
+ */
 public class FindFirstUniqueString {
 	public static void main(String[] args) {
-		String s = "aadadaad";
-		int index = find1(s);
+		String s = "aa";
+		int index = find2(s);
 		System.out.println(index);
 	}
 
@@ -36,9 +41,9 @@ public class FindFirstUniqueString {
 	}
 
 	/**
-	 * 第二种解决方案 使用LinkedHashMap
-	 * has error
+	 * 第二种解决方案 使用LinkedHashMap has error
 	 * https://leetcode-cn.com/submissions/detail/23561163/
+	 * 
 	 * @return
 	 */
 	private static int find1(String s) {
@@ -58,15 +63,30 @@ public class FindFirstUniqueString {
 		}
 		return -1;
 	}
-	
-	public int firstUniqChar(String s) {
-        int index = -1;
-        for (char ch = 'a'; ch <= 'z'; ch++) {
-            int startIndex = s.indexOf(ch);
-            if (startIndex != -1 && startIndex == s.lastIndexOf(ch)) {
-                index = (index == -1 || index > startIndex) ? startIndex : index;
-            }
-        }
-        return index;
-    }
+
+	/**
+	 * 第三种解决方案 如果字符串长度大于26时 只循环26次 时间最短 如果小于26则循环26次
+	 */
+	public static int firstUniqChar(String s) {
+		int index = -1;
+		for (char ch = 'a'; ch <= 'z'; ch++) {
+			int startIndex = s.indexOf(ch);
+			if (startIndex != -1 && startIndex == s.lastIndexOf(ch)) {
+				index = (index == -1 || index > startIndex) ? startIndex : index;
+			}
+		}
+		return index;
+	}
+
+	/**
+	 * 第四种解决方案 使用 lastIndexOf 和 indexOf
+	 */
+	private static int find2(String s) {
+		for (int i = 0; i < s.length(); i++) {
+			if (i == s.lastIndexOf(s.charAt(i)) && i == s.indexOf(s.charAt(i))) {
+				return i;
+			}
+		}
+		return -1;
+	}
 }
