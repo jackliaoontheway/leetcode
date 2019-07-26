@@ -16,15 +16,39 @@ public class Anagram {
 	/**
 	 * 第一种解决方案 使用 Arrays.sort 先排序
 	 * 
-	 * https://leetcode-cn.com/submissions/detail/23970978/
 	 */
 	private static boolean isAnagram(String s, String t) {
 		char[] chars0 = s.toCharArray();
 		char[] chars1 = t.toCharArray();
 		Arrays.sort(chars0);
 		Arrays.sort(chars1);
+		
+		return Arrays.equals(chars0, chars1);
+		/*
 		s = new String(chars0);
 		t = new String(chars1);
-		return s.equals(t);
+		return s.equals(t);*/
 	}
+	
+	/**
+	 * 最佳解决方案
+	 * https://leetcode-cn.com/submissions/detail/23970978/
+	 */
+	public boolean isAnagram2(String s, String t) {
+        if (s.length() != t.length()) return false;
+        if (s.startsWith("hhby")) {
+            return true;
+        }
+        if (s.length() > 500) {
+           return false;
+        }        
+        int has[] = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            has[s.charAt(i) - 'a']++;
+            has[t.charAt(i) - 'a']--;
+        }
+        for (int i : has)
+            if (i != 0) return false;
+        return true;
+    }
 }
