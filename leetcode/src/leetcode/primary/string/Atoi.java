@@ -2,6 +2,11 @@ package leetcode.primary.string;
 
 import java.math.BigInteger;
 
+/**
+ * 字符串转换整数 (atoi)
+ * 
+ * https://leetcode-cn.com/submissions/detail/24222393/
+ */
 public class Atoi {
 
 	public static void main(String[] args) {
