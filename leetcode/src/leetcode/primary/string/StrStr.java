@@ -2,7 +2,7 @@ package leetcode.primary.string;
 
 public class StrStr {
 	public static void main(String[] args) {
-		
+
 		System.out.println(strStr("mississippi", "issipi"));
 
 		String a = "a";
@@ -21,7 +21,7 @@ public class StrStr {
 		if (needle.length() == 0) {
 			return 0;
 		}
-		if(needle.length() > haystack.length()) {
+		if (needle.length() > haystack.length()) {
 			return -1;
 		}
 		for (int i = 0; i < haystack.length(); i++) {
@@ -32,7 +32,7 @@ public class StrStr {
 				for (int j = 1; j < needle.length(); j++) {
 					// 这里之所以是 == 就return 是因为k到了haystack的最长,但是needle还没结束
 					// 所以可以肯定 再往后走没有意义 haystack从i到最后 肯定没有needle长
-					if(k == haystack.length()) {
+					if (k == haystack.length()) {
 						return -1;
 					}
 					if (haystack.charAt(k++) != needle.charAt(j)) {
@@ -43,6 +43,19 @@ public class StrStr {
 				if (x == 0) {
 					return i;
 				}
+			}
+		}
+		return -1;
+	}
+
+	public int strStr2(String haystack, String needle) {
+		int len = needle.length();
+		if (len == 0) {
+			return 0;
+		}
+		for (int i = 0; i <= haystack.length() - len; i++) {
+			if (needle.equals(haystack.substring(i, i + len))) {
+				return i;
 			}
 		}
 		return -1;
