@@ -9,11 +9,40 @@ public class CountAndSay {
 
 	public static void main(String[] args) {
 
-		String str = countAndSay(4);
+		String str = countAndSay(5);
 
 		System.out.println(str);
 
 	}
+
+	/**
+	 * 第二种解决方案
+	 */
+	private static String countAndSay2(int n) {
+		return countAndSay2(n, "1");
+	}
+	
+	private static String countAndSay2(int n, String number) {
+		if (n == 1) {
+			return number;
+		}
+		String result = "";
+		int count = 1;
+		char cur = number.charAt(0);
+		for (int i = 1; i < number.length(); i++) {
+			if (number.charAt(i) == cur) {
+				count++;
+			} else {
+				result += (count + "" + cur);
+				count = 1;
+				cur = number.charAt(i);
+			}
+		}
+		result += (count + "" + cur);
+		return countAndSay2(n - 1, result);
+	}
+	
+	
 
 	/**
 	 * 
@@ -21,6 +50,9 @@ public class CountAndSay {
 	 */
 	private static String countAndSay(int n) {
 		String number = "1";
+		if (n == 1) {
+			return number;
+		}
 		for (int i = 1; i < n; i++) {
 			String temps[] = getStr(number);
 			String s = "";
@@ -31,7 +63,6 @@ public class CountAndSay {
 			}
 			number = s;
 		}
-
 		return number;
 	}
 
