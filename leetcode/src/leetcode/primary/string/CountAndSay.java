@@ -1,7 +1,6 @@
 package leetcode.primary.string;
 
 /**
- * 报数
  *
  * https://leetcode-cn.com/submissions/detail/24463623/
  */
@@ -9,10 +8,58 @@ public class CountAndSay {
 
 	public static void main(String[] args) {
 
-		String str = countAndSay(5);
+		String str = countAndSay3(5);
 
 		System.out.println(str);
 
+	}
+
+	public String countAndSay4(int n) {
+		StringBuilder res = new StringBuilder();
+		if (n == 1) {
+			return "1";
+		}
+		String str = countAndSay(n - 1);
+		int l = 0;
+		while (l < str.length()) {
+			int i = 1;
+			while (i < str.length() - l) {
+				if (str.charAt(l + i) != str.charAt(l)) {
+					break;
+				}
+				i++;
+			}
+			res.append(i).append(str.charAt(l));
+
+			l = l + i;
+		}
+		return res.toString();
+	}
+
+	/**
+	 * 第三种解决方案
+	 */
+	private static String countAndSay3(int n) {
+		if (n == 1) {
+			return "1";
+		}
+		StringBuilder str = new StringBuilder();
+		String number = countAndSay(n - 1);
+		int i = 0;
+		while (i < number.length()) {
+			int count = 1;
+			while (i < number.length() - 1) {
+				if (number.charAt(i) == number.charAt(i + 1)) {
+					count++;
+					i++;
+				} else {
+					break;
+				}
+			}
+			str.append(count).append(number.charAt(i));
+			i++;
+		}
+		return str.toString();
 	}
 
 	/**
@@ -21,7 +68,7 @@ public class CountAndSay {
 	private static String countAndSay2(int n) {
 		return countAndSay2(n, "1");
 	}
-	
+
 	private static String countAndSay2(int n, String number) {
 		if (n == 1) {
 			return number;
@@ -41,8 +88,6 @@ public class CountAndSay {
 		result += (count + "" + cur);
 		return countAndSay2(n - 1, result);
 	}
-	
-	
 
 	/**
 	 * 
