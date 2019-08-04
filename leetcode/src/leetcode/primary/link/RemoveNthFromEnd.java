@@ -1,5 +1,8 @@
 package leetcode.primary.link;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 删除链表的倒数第N个节点
  *
@@ -15,10 +18,42 @@ public class RemoveNthFromEnd {
 		node2.next = node3;
 		node3.next = node4;
 
-		removeNthFromEnd(node1, 4);
+		node1 = removeNthFromEnd2(node1, 1);
 
 		System.out.println(node1);
 	}
+	
+	/**
+	 * 第二种解决方案
+	 */
+	public static ListNode removeNthFromEnd2(ListNode head, int n) {
+		if (head == null) {
+			return null;
+		}
+		if (head.next == null && n == 1) {
+			return null;
+		}
+		List<ListNode> nodeList = new ArrayList<>();
+		ListNode temp = head;
+		while (temp != null) {
+			nodeList.add(temp);
+			temp = temp.next;
+		}
+		
+		int index = nodeList.size() - n;
+		if(index == 0) {
+			return nodeList.get(1);
+		}
+		ListNode node = nodeList.get(index - 1);
+		if(n == 1) {
+			node.next = null;
+		} else {
+			node.next = node.next.next;
+		}
+		return head;
+	}
+	
+	
 
 	/**
 	 * 第一种解决方案
