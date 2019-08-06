@@ -14,7 +14,7 @@ public class ReverseList {
 		node2.next = node3;
 		node3.next = node4;
 
-		node1 = reverseList(node1);
+		node1 = reverseList(null, node1);
 
 		while (node1 != null) {
 			System.out.println(node1.val);
@@ -26,18 +26,28 @@ public class ReverseList {
 	 * 第一种解决方案
 	 */
 	public static ListNode reverseList(ListNode head) {
-
 		ListNode prev = null;
-		ListNode cur = head;
-		while (cur != null) {
-			ListNode tempNext = cur.next;
-			cur.next = prev;
-			prev = cur;
-			cur = tempNext;
+		ListNode current = head;
+		while (current != null) {
+			ListNode temp = current.next;
+			current.next = prev;
+			prev = current;
+			current = temp;
 		}
-		
 		return prev;
 	}
 
-
+	/**
+	 * 第二种解决方案
+	 */
+	private static ListNode reverseList(ListNode prev, ListNode current) {
+		if (current == null) {
+			return prev;
+		}
+		ListNode temp = current.next;
+		current.next = prev;
+		prev = current;
+		current = temp;
+		return reverseList(prev, temp);
+	}
 }
