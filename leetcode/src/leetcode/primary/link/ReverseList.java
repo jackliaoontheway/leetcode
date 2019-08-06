@@ -48,6 +48,6 @@ public class ReverseList {
 		current.next = prev;
 		prev = current;
 		current = temp;
-		return reverseList(prev, temp);
+		return reverseList(prev, current);
 	}
 }
