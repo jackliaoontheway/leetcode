@@ -3,7 +3,7 @@ package leetcode.primary.link;
 /**
  * 反转链表
  */
-public class ReverseList {
+public class ReverseLink {
 
 	public static void main(String[] args) {
 		ListNode node1 = new ListNode(4);
