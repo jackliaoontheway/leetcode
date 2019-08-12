@@ -14,7 +14,13 @@ public class Palindrome {
 		node2.next = node3;
 		node3.next = node4;
 
+		reverseLink(node1);
+
 		boolean result = isPalindrome(node1);
+	}
+
+	public static void reverseLink(ListNode node1) {
+
 	}
 
 	public static boolean isPalindrome(ListNode head) {
