@@ -3,6 +3,10 @@ package leetcode.primary.stack;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * https://leetcode-cn.com/problems/min-stack/solution/shi-yong-fu-zhu-zhan-tong-bu-he-bu-tong-bu-python-/
+ * 最小栈
+ */
 public class MinStack {
 
     public static void main(String[] args) {
@@ -39,12 +43,12 @@ public class MinStack {
     }
 
     public int getMin() {
-        if(this.data.size() == 0) {
+        if (this.data.size() == 0) {
             return -1;
         }
         int minimalItem = this.data.get(0);
-        for(int item : this.data) {
-            if(minimalItem > item) {
+        for (int item : this.data) {
+            if (minimalItem > item) {
                 minimalItem = item;
             }
         }
