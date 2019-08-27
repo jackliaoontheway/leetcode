@@ -6,8 +6,8 @@ package leetcode.primary.array;
 public class PivotIndex {
 
     public static void main(String[] args) {
-        int [] nums = {-1,-1,-1,-1};
-        System.out.println(pivotIndex(nums));
+        int [] nums = {-1,-1,-1,-1,-1};
+        System.out.println(pivotIndex2(nums));
     }
 
     /**
@@ -51,10 +51,9 @@ public class PivotIndex {
             /*if (sumLeft * 2 == sumTotal - nums[p]) {
                 return p;
             }*/
-            if( (sumTotal - nums[p]) / 2 == sumLeft ) {
+            if((sumTotal - nums[p]) % 2 == 0 && (sumTotal - nums[p]) / 2 == sumLeft) {
                 return p;
             }
-
             sumLeft += nums[p];
         }
         return -1;
