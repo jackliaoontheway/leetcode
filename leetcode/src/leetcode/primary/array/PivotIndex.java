@@ -6,11 +6,12 @@ package leetcode.primary.array;
 public class PivotIndex {
 
     public static void main(String[] args) {
-        int [] nums = {-1,-1,-1,-1,-1,0};
+        int [] nums = {-1,-1,-1,-1};
         System.out.println(pivotIndex(nums));
     }
 
     /**
+     * ???
      * 没有考虑到负数的情况
      */
     public static int pivotIndex(int [] nums) {
@@ -21,6 +22,7 @@ public class PivotIndex {
         int tail = nums.length - 1;
         int left = nums[head ++];
         int right = nums[tail];
+        int result = -1;
         while(head != tail) {
             if(left < right) {
                 left += nums[head ++];
@@ -28,10 +30,11 @@ public class PivotIndex {
                 right += nums[--tail];
             }
             if(left == right) {
-                return head;
+                result = head;
+                left += nums[head ++];
             }
         }
-        return  -1;
+        return  result;
     }
 
     public static int pivotIndex2(int[] nums) {
@@ -41,10 +44,17 @@ public class PivotIndex {
             sumTotal += nums[i];
         }
         for (int p = 0; p < nums.length; p++) {
-
-            if (sumLeft * 2 == sumTotal - nums[p]) {
+            // 逆向思维
+            // 左边的和 × 2 如果等于总和 - nums[p] 则p是中间索引
+            // 总和 - nums[p] = 剩余的和(nums[p] 的左边 + nums[p]的右边)
+            // 剩余的和 / 左边 == 2 说明左边占剩余的和的一半 也就是左边等于右边
+            /*if (sumLeft * 2 == sumTotal - nums[p]) {
+                return p;
+            }*/
+            if( (sumTotal - nums[p]) / 2 == sumLeft ) {
                 return p;
             }
+
             sumLeft += nums[p];
         }
         return -1;
