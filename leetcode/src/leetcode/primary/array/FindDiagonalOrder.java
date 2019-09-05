@@ -64,6 +64,9 @@ public class FindDiagonalOrder {
     }
 
     public static int[] findDiagonalOrder2(int[][] matrix) {
+        if(matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return new int [0];
+        }
         int times = matrix.length + matrix[0].length - 1;
         int[] result = new int[matrix.length * matrix[0].length];
         boolean right = true;
