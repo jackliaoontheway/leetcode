@@ -3,16 +3,17 @@ package leetcode.primary.array;
 public class TwoSum {
 
     public static void main(String[] args) {
-        int numbers[] = {-1,0};
+        int numbers[] = {-1, 0};
         int target = -1;
-        int result[] = twoSum(numbers, target);
+        int result[] = twoSum2(numbers, target);
         System.out.print(result[0]);
         System.out.print(result[1]);
     }
 
     public static int[] twoSum(int[] numbers, int target) {
         int[] result = new int[2];
-        label : for (int i = 0; i < numbers.length; i++) {
+        label:
+        for (int i = 0; i < numbers.length; i++) {
             if (numbers[i] > target) {
                 break;
             }
@@ -22,6 +23,25 @@ public class TwoSum {
                     result[1] = j + 1;
                     break label;
                 }
+            }
+        }
+        return result;
+    }
+
+
+    public static int[] twoSum2(int[] numbers, int target) {
+        int[] result = new int[2];
+        int head = 0;
+        int tail = numbers.length - 1;
+        while (head < tail) {
+            if (numbers[head] + numbers[tail] == target) {
+                result[0] = head + 1;
+                result[1] = tail + 1;
+                break;
+            } else if (numbers[head] + numbers[tail] > target) {
+                tail--;
+            } else {
+                head++;
             }
         }
         return result;
