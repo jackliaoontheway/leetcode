@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class ArrayPairSum {
 
     public static void main(String[] args) {
-        int nums[] = {1,4,3,2};
+        int nums[] = {1, 4, 3, 2};
         System.out.print(arrayPairSum(nums));
     }
 
@@ -15,9 +15,21 @@ public class ArrayPairSum {
         Arrays.sort(nums);
 
         for (int i = 0; i < nums.length; i++) {
-            if(i % 2 == 0) {
+            if (i % 2 == 0) {
                 minTotal += nums[i];
             }
+        }
+
+        return minTotal;
+    }
+
+    public static int arrayPairSum2(int[] nums) {
+        int minTotal = 0;
+
+        Arrays.sort(nums);
+
+        for (int i = 0; i < nums.length; i += 2) {
+            minTotal += nums[i];
         }
 
         return minTotal;
