@@ -1,5 +1,9 @@
 package leetcode.primary.array;
 
+/**
+ * 两数之和 II - 输入有序数组
+ * https://leetcode-cn.com/submissions/detail/29419230/
+ */
 public class TwoSum {
 
     public static void main(String[] args) {
