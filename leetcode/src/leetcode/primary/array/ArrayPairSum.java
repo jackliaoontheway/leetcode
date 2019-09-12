@@ -2,6 +2,9 @@ package leetcode.primary.array;
 
 import java.util.Arrays;
 
+/**
+ * 数组拆分 I
+ */
 public class ArrayPairSum {
 
     public static void main(String[] args) {
