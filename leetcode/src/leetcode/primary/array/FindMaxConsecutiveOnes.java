@@ -8,6 +8,12 @@ public class FindMaxConsecutiveOnes {
     public static void main(String[] args) {
         int nums[] = {1, 1,0};
         System.out.print(findMaxConsecutiveOnes(nums));
+
+        String x = "123";
+        if(x.isEmpty()) {
+
+        }
+
     }
 
 
