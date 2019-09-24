@@ -1,7 +1,9 @@
 package leetcode.primary.hash;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 设计哈希映射
@@ -64,6 +66,9 @@ public class MyHashMap {
     }
 
     public static void main(String[] args) {
+
+        Map<String,String> map = new HashMap<>();
+
         MyHashMap hashMap = new MyHashMap();
         hashMap.remove(14);
         hashMap.put(1, 1);
