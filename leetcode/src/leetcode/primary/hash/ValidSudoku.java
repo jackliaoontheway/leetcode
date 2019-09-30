@@ -58,7 +58,10 @@ public class ValidSudoku {
                         containerSet.add(board[x][y]);
                     }
                 }
-                if(j != board[i].length - 1) {
+                if(j == board[i].length - 1) {
+                    x -= 2;
+                    y ++;
+                } else {
                     if ((j + 1) % 3 == 0) {
                         x ++;
                         y -= 2;
