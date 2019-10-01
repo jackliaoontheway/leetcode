@@ -32,7 +32,7 @@ public class ValidSudoku {
             Set<Character> rowSet = new HashSet<>();
             Set<Character> cellSet = new HashSet<>();
             Set<Character> containerSet = new HashSet<>();
-            if ((i + 1) % 3 == 0) {
+            if (i % 3 == 0) {
                 x = i;
                 y = 0;
             }
