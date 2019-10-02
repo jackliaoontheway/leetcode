@@ -37,32 +37,23 @@ public class ValidSudoku {
                 y = 0;
             }
             for (int j = 0; j < board[i].length; j++) {
-                if(j != 0 && j % 3 == 0) {
-                    x ++;
+                if (j != 0 && j % 3 == 0) {
+                    x++;
                     y -= 3;
                 }
-                if (rowSet.contains(board[i][j])) {
+                if (rowSet.contains(board[i][j]) || cellSet.contains(board[j][i]) || containerSet.contains(board[x][y])) {
                     return false;
-                } else {
-                    if ('.' != board[i][j]) {
-                        rowSet.add(board[i][j]);
-                    }
                 }
-                if (cellSet.contains(board[j][i])) {
-                    return false;
-                } else {
-                    if ('.' != board[j][i]) {
-                        cellSet.add(board[j][i]);
-                    }
+                if ('.' != board[i][j]) {
+                    rowSet.add(board[i][j]);
                 }
-                if (containerSet.contains(board[x][y])) {
-                    return false;
-                } else {
-                    if ('.' != board[x][y]) {
-                        containerSet.add(board[x][y]);
-                    }
+                if ('.' != board[j][i]) {
+                    cellSet.add(board[j][i]);
                 }
-                y ++;
+                if ('.' != board[x][y]) {
+                    containerSet.add(board[x][y]);
+                }
+                y++;
             }
             x -= 2;
         }
