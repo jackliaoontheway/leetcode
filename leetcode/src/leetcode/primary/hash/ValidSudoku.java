@@ -37,6 +37,10 @@ public class ValidSudoku {
                 y = 0;
             }
             for (int j = 0; j < board[i].length; j++) {
+                if(j != 0 && j % 3 == 0) {
+                    x ++;
+                    y -= 3;
+                }
                 if (rowSet.contains(board[i][j])) {
                     return false;
                 } else {
@@ -58,18 +62,9 @@ public class ValidSudoku {
                         containerSet.add(board[x][y]);
                     }
                 }
-                if(j == board[i].length - 1) {
-                    x -= 2;
-                    y ++;
-                } else {
-                    if ((j + 1) % 3 == 0) {
-                        x ++;
-                        y -= 2;
-                    } else {
-                        y ++;
-                    }
-                }
+                y ++;
             }
+            x -= 2;
         }
         return true;
     }
