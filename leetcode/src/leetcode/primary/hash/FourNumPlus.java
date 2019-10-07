@@ -11,5 +11,6 @@ public class FourNumPlus {
 
     public int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
 
+        return 0;
     }
 }
