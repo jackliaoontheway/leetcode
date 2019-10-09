@@ -6,7 +6,7 @@ package leetcode.primary.hash;
 public class LongestSubstring {
 
     public static void main(String[] args) {
-
+        System.out.print(new LongestSubstring().lengthOfLongestSubstring("aa"));
     }
 
     public int lengthOfLongestSubstring(String s) {
