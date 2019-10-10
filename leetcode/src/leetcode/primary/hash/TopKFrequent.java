@@ -9,6 +9,10 @@ public class TopKFrequent {
 
     public static void main(String[] args) {
 
+        int[] nums  = {};
+        int k = 1;
+        List<Integer> result = new TopKFrequent().topKFrequent(nums,k);
+
     }
 
 
