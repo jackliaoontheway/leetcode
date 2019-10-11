@@ -1,0 +1,23 @@
+package leetcode.primary.hash;
+
+import java.util.List;
+
+/**
+ * 前 K 个高频元素
+ */
+public class TopKFrequent {
+
+    public static void main(String[] args) {
+
+        int[] nums  = {};
+        int k = 1;
+        List<Integer> result = new TopKFrequent().topKFrequent(nums,k);
+
+    }
+
+
+    public List<Integer> topKFrequent(int[] nums, int k) {
+
+        return null;
+    }
+}
