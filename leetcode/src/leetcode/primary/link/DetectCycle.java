@@ -13,12 +13,9 @@ public class DetectCycle {
         ListNode node2 = new ListNode(5);
         ListNode node3 = new ListNode(1);
         ListNode node4 = new ListNode(9);
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
-        node4.next = node1;
 
-        System.out.print(new DetectCycle().detectCycle(node1).val);
+
+        System.out.print(new DetectCycle().detectCycle(node1));
     }
 
     /**
@@ -38,13 +35,18 @@ public class DetectCycle {
         return null;
     }
 
+    /**
+     * 第二种方案 使用 链表， 双指针，存在疑问
+     * @param head
+     * @return
+     */
     public ListNode detectCycle(ListNode head) {
         if (head == null || head.next == null) {
             return null;
         }
         ListNode lower = head;
         ListNode faster = head.next;
-        ListNode result = null;
+        ListNode result = head;
         while (lower != faster) {
             if (faster == null || faster.next == null) {
                 return null;
