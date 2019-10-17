@@ -31,4 +31,29 @@ public class IntersectionNode {
         return null;
     }
 
+    /**
+     * 第二种解决方案
+     * @param headA
+     * @param headB
+     * @return
+     */
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        ListNode l1 = headA, l2 = headB;
+        while(l1 != l2){
+            if(l1!=null){
+                l1 = l1.next;
+            }
+            else{
+                l1 = headB;
+            }
+            if(l2!=null){
+                l2 = l2.next;
+            }
+            else{
+                l2 = headA;
+            }
+        }
+        return l1;
+    }
+
 }
