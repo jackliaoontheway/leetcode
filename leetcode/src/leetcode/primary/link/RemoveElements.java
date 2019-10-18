@@ -2,6 +2,7 @@ package leetcode.primary.link;
 
 /**
  * 移除链表元素
+ * https://leetcode-cn.com/submissions/detail/33551931/
  */
 public class RemoveElements {
 
@@ -39,4 +40,23 @@ public class RemoveElements {
         return head;
     }
 
+
+    /**
+     * 其他解决方案
+     * @param head
+     * @param val
+     * @return
+     */
+    public  ListNode removeElements2(ListNode head, int val){
+        ListNode dummyHead = new ListNode(-1);
+        dummyHead.next = head;
+        ListNode prev = dummyHead;
+        while (prev.next != null){
+            if (prev.next.val == val)
+                prev.next = prev.next.next;
+            else
+                prev = prev.next;
+        }
+        return dummyHead.next;
+    }
 }
