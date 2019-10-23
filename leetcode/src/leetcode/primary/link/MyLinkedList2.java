@@ -4,6 +4,16 @@ package leetcode.primary.link;
  * 设计双向链表
  */
 public class MyLinkedList2 {
+
+    public static void main(String[] args) {
+        MyLinkedList2 obj = new MyLinkedList2();
+        obj.addAtHead(5);
+        obj.deleteAtIndex(0);
+        System.out.print(obj.get(0));
+        System.out.print(obj.get(1));
+        System.out.print(obj.get(2));
+    }
+
     /**
      * Initialize your data structure here.
      */
@@ -30,6 +40,7 @@ public class MyLinkedList2 {
                 return current.val;
             }
             current = current.next;
+            i++;
         }
         return -1;
     }
@@ -43,13 +54,11 @@ public class MyLinkedList2 {
         if (this.size == 0) {
             head = newNode;
             tail = newNode;
-            return;
+        } else {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
         }
-
-        newNode.next = head;
-        head.prev = newNode;
-        head = newNode;
-
         this.size++;
     }
 
@@ -61,13 +70,11 @@ public class MyLinkedList2 {
         if (this.size == 0) {
             head = newNode;
             tail = newNode;
-            return;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
         }
-
-        tail.next = newNode;
-        newNode.prev = tail;
-        tail = newNode;
-
         this.size++;
     }
 
@@ -95,7 +102,9 @@ public class MyLinkedList2 {
                 newNode.prev = current.prev;
                 current.prev = newNode;
                 this.size++;
+                break;
             }
+            i++;
             current = current.next;
         }
     }
@@ -107,6 +116,22 @@ public class MyLinkedList2 {
         if (this.size <= index) {
             return;
         }
+
+        if (index == 0) {
+            this.head = this.head.next;
+            if(this.head != null) {
+                this.head.prev = null;
+            }
+            this.size--;
+            return;
+        }
+        if (index == this.size - 1) {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+            this.size--;
+            return;
+        }
+
         Node2 current = head;
         int i = 0;
         while (current != null) {
@@ -114,7 +139,9 @@ public class MyLinkedList2 {
                 current.prev.next = current.next;
                 current.next.prev = current.prev;
                 this.size--;
+                break;
             }
+            i++;
             current = current.next;
         }
     }
