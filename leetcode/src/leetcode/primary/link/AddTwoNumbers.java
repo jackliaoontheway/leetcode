@@ -44,6 +44,17 @@ public class AddTwoNumbers {
     }
 
     /**
+     * 第二种解决方案
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+
+        return null;
+    }
+
+    /**
      * 第一种解决方案 使用 BigInteger
      * @param l1
      * @param l2
