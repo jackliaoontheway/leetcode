@@ -3,7 +3,7 @@ package leetcode.primary.link;
 import java.math.BigInteger;
 
 /**
- * 两数相加 第一种解决方案 使用 BigInteger
+ * 两数相加
  * https://leetcode-cn.com/submissions/detail/34230984/
  */
 public class AddTwoNumbers {
@@ -35,7 +35,7 @@ public class AddTwoNumbers {
         node11.next = node12;
         node12.next = node13;
 
-        node1 = new AddTwoNumbers().addTwoNumbers(node1, node4);
+        node1 = new AddTwoNumbers().addTwoNumbers2(node1, node4);
 
         while (node1 != null) {
             System.out.println(node1.val);
@@ -45,17 +45,77 @@ public class AddTwoNumbers {
 
     /**
      * 第二种解决方案
+     *
      * @param l1
      * @param l2
      * @return
      */
     public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        ListNode result = null;
+        ListNode current = null;
+        boolean plusOne = false;
+        while (l1 != null || l2 != null) {
+            if (l1 != null && l2 != null) {
+                int valPlus = l1.val + l2.val;
+                if (plusOne) {
+                    valPlus++;
+                }
+                plusOne = (valPlus >= 10);
 
-        return null;
+                ListNode newNode = new ListNode(valPlus % 10);
+                if (current == null) {
+                    result = newNode;
+                } else {
+                    current.next = newNode;
+                }
+                current = newNode;
+
+                l1 = l1.next;
+                l2 = l2.next;
+                continue;
+            }
+            if (l1 != null) {
+                int valPlus = l1.val;
+                if (plusOne) {
+                    valPlus++;
+                }
+                plusOne = (valPlus >= 10);
+                ListNode newNode = new ListNode(valPlus % 10);
+                if (current == null) {
+                    result = newNode;
+                } else {
+                    current.next = newNode;
+                }
+                current = newNode;
+                l1 = l1.next;
+                continue;
+            }
+            if (l2 != null) {
+                int valPlus = l2.val;
+                if (plusOne) {
+                    valPlus++;
+                }
+                plusOne = (valPlus >= 10);
+                ListNode newNode = new ListNode(valPlus % 10);
+                if (current == null) {
+                    result = newNode;
+                } else {
+                    current.next = newNode;
+                }
+                current = newNode;
+                l2 = l2.next;
+                continue;
+            }
+        }
+        if (plusOne) {
+            current.next = new ListNode(1);
+        }
+        return result;
     }
 
     /**
      * 第一种解决方案 使用 BigInteger
+     *
      * @param l1
      * @param l2
      * @return
@@ -80,13 +140,13 @@ public class AddTwoNumbers {
         BigInteger bPlus = new BigInteger(s1.toString()).add(new BigInteger(s2.toString()));
 
         ListNode result = null;
-        if(bPlus.compareTo(BigInteger.valueOf(10)) < 0) {
+        if (bPlus.compareTo(BigInteger.valueOf(10)) < 0) {
             result = new ListNode(bPlus.intValue());
             return result;
         }
 
         ListNode currentNode = null;
-        while ( bPlus.divide(BigInteger.valueOf(10)).compareTo(BigInteger.valueOf(0)) > 0) {
+        while (bPlus.divide(BigInteger.valueOf(10)).compareTo(BigInteger.valueOf(0)) > 0) {
             int x = bPlus.remainder(BigInteger.valueOf(10)).intValue();
             if (result == null) {
                 result = new ListNode(x);
