@@ -1,9 +1,6 @@
 package leetcode.primary.link.flatten;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 扁平化多级双向链表
  */
@@ -39,28 +36,23 @@ public class Flatten {
     }
 
     public Node flatten(Node head) {
-        if(head == null) {
-            return null;
-        }
-        List<Node> list = new ArrayList<>();
-        process(list, head);
-        Node result = new Node();
-        result.prev = null;
-        result.val = list.get(0).val;
-        Node current = result;
-        for(int i=1;i<list.size();i++) {
-            current.next = list.get(i);
-            list.get(i).prev = current;
-            current = current.next;
-        }
-        return result;
+
+        process(null, head);
+
+        return head;
     }
 
-    private void process(List<Node> list, Node head) {
-        while (head != null) {
-            list.add(head);
+    private void process(Node result, Node head) {
+        Node current = head;
+        while (current != null) {
+            if (result == null) {
+                result = head;
+            } else {
+                result.next = head;
+                head.prev = result;
+            }
             if (head.child != null) {
-                process(list, head.child);
+                process(head, head.child);
             }
             head.child = null;
             head = head.next;
