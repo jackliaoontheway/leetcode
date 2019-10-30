@@ -11,12 +11,12 @@ public class Flatten {
         Node node13 = new Node(13,null,null,null);
 
         Node node11 = new Node(11,null,null,null);
-        Node node12 = new Node(12,node11,null,node13);
+        Node node12 = new Node(12,node11,null,null);
         node11.next = node12;
         node12.prev = node11;
 
         Node node9 = new Node(9,null,null,node11);
-        Node node10 = new Node(10,node9,null,null);
+        Node node10 = new Node(10,node9,null,node13);
         node9.next = node10;
         node10.prev = node9;
 
@@ -39,7 +39,7 @@ public class Flatten {
         Node node4 = new Node(4,node3,null,null);
         node3.next = node4;
 
-        new Flatten().flatten(node1);
+        node1 = new Flatten().flatten(node1);
 
         while (node1 != null) {
             System.out.println(node1.val);
