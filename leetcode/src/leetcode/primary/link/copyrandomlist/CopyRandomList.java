@@ -6,6 +6,7 @@ import java.util.Map;
 
 /**
  * 复制带随机指针的链表
+ * https://leetcode-cn.com/submissions/detail/34975053/
  */
 public class CopyRandomList {
 
@@ -48,6 +49,37 @@ public class CopyRandomList {
             existedNode.random = copyRandomList(map,head.random);
         }
         return existedNode;
+    }
+
+
+    /**
+     * 其他解决方案
+     * @param head
+     * @return
+     */
+    public Node copyRandomList2(Node head) {
+        if (head == null) return null;
+        Node old = head, node;
+        while (head != null) {
+            node = new Node(head.val, null, null);
+            node.next = head.next;
+            head.next = node;
+            head = node.next;
+        }
+        head = old;
+        while (old != null) {
+            node = old.next;
+            node.random = old.random == null ? null : old.random.next;
+            old = node.next;
+        }
+        old = head.next;
+        while (head != null) {
+            node = head.next;
+            head.next = node.next;
+            head = head.next;
+            if (head != null) node.next = head.next;
+        }
+        return old;
     }
 
 }
