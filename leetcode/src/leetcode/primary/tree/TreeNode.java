@@ -1,7 +1,5 @@
 package leetcode.primary.tree;
 
-import com.sun.source.tree.Tree;
-
 public class TreeNode {
 
     int val;
@@ -23,13 +21,12 @@ public class TreeNode {
         TreeNode treeNode5 = new TreeNode(5);
         TreeNode treeNode6 = new TreeNode(6);
 
-        treeNode0.right = treeNode1;
-        treeNode1.right = treeNode2;
-        treeNode2.right = treeNode3;
-        treeNode3.right = treeNode4;
-        treeNode4.right = treeNode5;
-        treeNode5.right = treeNode6;
-
+        treeNode0.left = treeNode1;
+        treeNode0.right = treeNode2;
+        treeNode1.left = treeNode3;
+        treeNode1.right = treeNode4;
+        treeNode2.left = treeNode5;
+        treeNode2.right = treeNode6;
 
         return treeNode0;
     }
