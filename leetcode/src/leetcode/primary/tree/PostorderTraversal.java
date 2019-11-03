@@ -34,11 +34,11 @@ public class PostorderTraversal {
             return;
         }
 
-        if (root.right != null) {
-            iterator(result, root.right);
-        }
         if (root.left != null) {
             iterator(result, root.left);
+        }
+        if (root.right != null) {
+            iterator(result, root.right);
         }
         result.add(root.val);
     }
