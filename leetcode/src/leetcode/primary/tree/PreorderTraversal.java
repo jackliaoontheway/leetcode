@@ -1,9 +1,6 @@
 package leetcode.primary.tree;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class PreorderTraversal {
 
@@ -11,7 +8,7 @@ public class PreorderTraversal {
 
         TreeNode treeNode = TreeNode.getData();
 
-        List<Integer> result = new PreorderTraversal().preorderTraversal2(treeNode);
+        List<Integer> result = new PreorderTraversal().preorderTraversal3(treeNode);
         //List<Integer> result = new PreorderTraversal().preorderTraversal(treeNode);
 
         for (Integer item : result) {
@@ -76,6 +73,34 @@ public class PreorderTraversal {
                 temp.remove(temp.size() - 1);
             } else {
                 break;
+            }
+        }
+        return result;
+    }
+
+
+    /**
+     * 第三种解决方案 使用Stack
+     *
+     * @param root
+     * @return
+     */
+    public List<Integer> preorderTraversal3(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            result.add(node.val);
+            if (node.right != null) {
+                stack.add(node.right);
+            }
+            if (node.left != null) {
+                stack.add(node.left);
             }
         }
         return result;
