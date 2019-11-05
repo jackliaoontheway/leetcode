@@ -8,7 +8,7 @@ public class PreorderTraversal {
 
         TreeNode treeNode = TreeNode.getData();
 
-        List<Integer> result = new PreorderTraversal().preorderTraversal3(treeNode);
+        List<Integer> result = new PreorderTraversal().preorderTraversal21(treeNode);
         //List<Integer> result = new PreorderTraversal().preorderTraversal(treeNode);
 
         for (Integer item : result) {
@@ -17,6 +17,10 @@ public class PreorderTraversal {
 
     }
 
+    /**
+     * 第一种解决方案 使用递归
+     * @param root
+     */
     public List<Integer> preorderTraversal(TreeNode root) {
 
         List<Integer> result = new ArrayList();
@@ -71,6 +75,43 @@ public class PreorderTraversal {
             if (!temp.isEmpty()) {
                 root = temp.get(temp.size() - 1);
                 temp.remove(temp.size() - 1);
+            } else {
+                break;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 第二种解决方案不用递归 使用stack
+     *
+     * @param root
+     * @return
+     */
+    public List<Integer> preorderTraversal21(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        Set<TreeNode> set = new HashSet<>();
+        while (true) {
+            if (!set.contains(root)) {
+                result.add(root.val);
+                set.add(root);
+            }
+            if (root.left != null && !set.contains(root.left)) {
+                stack.add(root);
+                root = root.left;
+                continue;
+            }
+            if (root.right != null) {
+                root = root.right;
+                continue;
+            }
+            if (!stack.isEmpty()) {
+                root = stack.pop();
             } else {
                 break;
             }
