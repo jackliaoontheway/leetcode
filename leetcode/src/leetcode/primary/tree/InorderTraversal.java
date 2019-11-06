@@ -11,7 +11,7 @@ public class InorderTraversal {
 
         TreeNode treeNode = TreeNode.getData();
 
-        List<Integer> result = new InorderTraversal().inorderTraversal2(treeNode);
+        List<Integer> result = new InorderTraversal().inorderTraversal3(treeNode);
 
         for (Integer item : result) {
             System.out.print(item + " ");
@@ -79,6 +79,32 @@ public class InorderTraversal {
             } else {
                 break;
             }
+        }
+        return result;
+    }
+
+    /**
+     * 第三种解决方案 使用Stack
+     *
+     * @param root
+     * @return
+     */
+    public List<Integer> inorderTraversal3(TreeNode root) {
+        List<Integer> result = new ArrayList();
+        if (root == null) {
+            return result;
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                stack.add(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            result.add(current.val);
+            current = current.right;
         }
         return result;
     }
