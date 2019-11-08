@@ -11,7 +11,7 @@ public class PostorderTraversal {
 
         TreeNode treeNode = TreeNode.getData();
 
-        List<Integer> result = new PostorderTraversal().postorderTraversal(treeNode);
+        List<Integer> result = new PostorderTraversal().postorderTraversal2(treeNode);
 
         for (Integer item : result) {
             System.out.print(item + " ");
@@ -57,15 +57,19 @@ public class PostorderTraversal {
 
         Stack<TreeNode> stack = new Stack<>();
         Set<TreeNode> set = new HashSet<>();
+        stack.push(root);
         while (true) {
-            if (root.left != null) {
+            if (root.left != null && !set.contains(root.left)) {
                 root = root.left;
+                stack.push(root);
                 continue;
             }
 
-            stack.push(root);
+            if (!set.contains(root)) {
+                stack.push(root);
+            }
 
-            if (root.right != null) {
+            if (root.right != null  && !set.contains(root.right)) {
                 root = root.right;
                 continue;
             }
