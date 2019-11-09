@@ -11,7 +11,7 @@ public class PostorderTraversal {
 
         TreeNode treeNode = TreeNode.getData();
 
-        List<Integer> result = new PostorderTraversal().postorderTraversal2(treeNode);
+        List<Integer> result = new PostorderTraversal().postorderTraversal3(treeNode);
 
         for (Integer item : result) {
             System.out.print(item + " ");
@@ -69,7 +69,7 @@ public class PostorderTraversal {
                 stack.push(root);
             }
 
-            if (root.right != null  && !set.contains(root.right)) {
+            if (root.right != null && !set.contains(root.right)) {
                 root = root.right;
                 continue;
             }
@@ -101,15 +101,20 @@ public class PostorderTraversal {
         }
 
         Stack<TreeNode> stack = new Stack<>();
-        TreeNode current = root;
-        while (current != null || !stack.isEmpty()) {
-            while (current != null) {
-                stack.add(current);
-                current = current.left;
+        stack.push(root);
+        List<TreeNode> list = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            TreeNode node = stack.pop();
+            list.add(node);
+            if (node.right != null) {
+                stack.add(node.right);
             }
-            current = stack.pop();
-            result.add(current.val);
-            current = current.right;
+            if (node.left != null) {
+                stack.add(node.left);
+            }
+        }
+        for (int i = list.size() - 1; i >= 0; i--) {
+            result.add(list.get(i).val);
         }
         return result;
     }
