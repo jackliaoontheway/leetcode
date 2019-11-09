@@ -106,11 +106,11 @@ public class PostorderTraversal {
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
             list.add(node);
-            if (node.right != null) {
-                stack.add(node.right);
-            }
             if (node.left != null) {
                 stack.add(node.left);
+            }
+            if (node.right != null) {
+                stack.add(node.right);
             }
         }
         for (int i = list.size() - 1; i >= 0; i--) {
