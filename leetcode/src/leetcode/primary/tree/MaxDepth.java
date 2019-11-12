@@ -13,7 +13,7 @@ public class MaxDepth {
     }
 
     private int maxDepth(TreeNode treeNode) {
-        maxDepth(treeNode, 0);
+        maxDepth(treeNode, 1);
         return maxDepth;
     }
 
