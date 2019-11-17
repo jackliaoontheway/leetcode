@@ -1,6 +1,8 @@
 package leetcode.primary.tree;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -15,6 +17,11 @@ public class Symmetric {
         System.out.print(new Symmetric().isSymmetric(treeNode));
     }
 
+    /**
+     * 方案一 使用List
+     * @param root
+     * @return
+     */
     public boolean isSymmetric(TreeNode root) {
         if (root == null) {
             return true;
@@ -26,46 +33,37 @@ public class Symmetric {
             return false;
         }
 
-        return inorderTraversal(root.left).equals(inorderTraversal2(root.right));
-    }
-
-
-    private String inorderTraversal(TreeNode root) {
-        StringBuffer sb = new StringBuffer();
-        Stack<TreeNode> stack = new Stack<>();
-        while (root != null || !stack.isEmpty()) {
-            while (root != null) {
-                stack.add(root);
-                root = root.left;
+        List<TreeNode> queue = new LinkedList<>();
+        queue.add(root.left);
+        queue.add(root.right);
+        while (!queue.isEmpty()) {
+            int len = queue.size();
+            if (len % 2 != 0) {
+                return false;
             }
-            root = stack.pop();
-            sb.append(root.val);
-            root = root.right;
-            if(root == null) {
-                sb.append("x");
+            List<TreeNode> temp = new LinkedList<>();
+            for (int i = 0; i < len; i++) {
+                TreeNode treeNode = queue.get(i);
+                TreeNode treeNode2 = queue.get(len - i - 1);
+                if (treeNode != null) {
+                    temp.add(treeNode.left);
+                    temp.add(treeNode.right);
+                }
+                if (i < len / 2) {
+                    if (treeNode != null && treeNode2 == null) {
+                        return false;
+                    }
+                    if (treeNode == null && treeNode2 != null) {
+                        return false;
+                    }
+                    if (treeNode != null && treeNode2 != null && treeNode.val != treeNode2.val) {
+                        return false;
+                    }
+                }
             }
+            queue = temp;
         }
-        System.out.println(sb);
-        return sb.toString();
-    }
-
-    private String inorderTraversal2(TreeNode root) {
-        StringBuffer sb = new StringBuffer();
-        Stack<TreeNode> stack = new Stack<>();
-        while (root != null || !stack.isEmpty()) {
-            while (root != null) {
-                stack.add(root);
-                root = root.right;
-            }
-            root = stack.pop();
-            sb.append(root.val);
-            root = root.left;
-            if(root == null) {
-                sb.append("x");
-            }
-        }
-        System.out.println(sb);
-        return sb.toString();
+        return true;
     }
 
 
