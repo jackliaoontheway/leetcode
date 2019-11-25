@@ -2,6 +2,7 @@ package leetcode.primary.tree;
 
 /**
  * 二叉树的最大深度
+ * 方案一 ： 使用递归
  */
 public class MaxDepth {
 
@@ -12,25 +13,32 @@ public class MaxDepth {
         System.out.println(new MaxDepth().maxDepth(treeNode));
     }
 
-    private int maxDepth(TreeNode treeNode) {
-        maxDepth(treeNode, 1);
+    private int maxDepth = 0;
+
+    /**
+     * 使用递归
+     * @param root
+     * @return
+     */
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return maxDepth;
+        }
+        maxDepth(root, 1);
         return maxDepth;
     }
 
-    int maxDepth;
+    public void maxDepth(TreeNode root, int depth) {
 
-    private void maxDepth(TreeNode treeNode, int depth) {
-        if (treeNode == null) {
+        if (root == null) {
             return;
         }
 
-        if (treeNode.left == null && treeNode.right == null) {
-            maxDepth = Math.max(maxDepth, depth);
-        }
+        maxDepth = Math.max(maxDepth, depth);
 
-        maxDepth(treeNode.left, depth + 1);
-        maxDepth(treeNode.right, depth + 1);
+        maxDepth(root.left, depth + 1);
 
+        maxDepth(root.right, depth + 1);
     }
 
 }
