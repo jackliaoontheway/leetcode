@@ -13,7 +13,7 @@ public class MaxDepth {
         System.out.println(new MaxDepth().maxDepth(treeNode));
     }
 
-    private int maxDepth = 0;
+    private int maxDepthCount = 0;
 
     /**
      * 使用递归
@@ -21,11 +21,8 @@ public class MaxDepth {
      * @return
      */
     public int maxDepth(TreeNode root) {
-        if (root == null) {
-            return maxDepth;
-        }
         maxDepth(root, 1);
-        return maxDepth;
+        return maxDepthCount;
     }
 
     public void maxDepth(TreeNode root, int depth) {
@@ -34,7 +31,7 @@ public class MaxDepth {
             return;
         }
 
-        maxDepth = Math.max(maxDepth, depth);
+        maxDepthCount = Math.max(maxDepthCount, depth);
 
         maxDepth(root.left, depth + 1);
 
