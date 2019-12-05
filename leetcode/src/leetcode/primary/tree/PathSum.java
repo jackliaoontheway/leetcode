@@ -11,7 +11,7 @@ public class PathSum {
     public static void main(String[] args) {
         TreeNode treeNode = TreeNode.getData();
 
-        System.out.print(new PathSum().hasPathSum2(treeNode, 7));
+        System.out.print(new PathSum().hasPathSum3(treeNode, 7));
 
     }
 
@@ -66,6 +66,40 @@ public class PathSum {
             current = current.right;
             if(current != null) {
                 sum = sumStack.pop();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 第三种解决方案
+     * @param root
+     * @param sum
+     * @return
+     */
+    public boolean hasPathSum3(TreeNode root, int sum) {
+        if (root == null) {
+            return false;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.add(root);
+        Stack<Integer> sumStack = new Stack<>();
+        sumStack.add(sum - root.val);
+        while (!stack.isEmpty()) {
+            TreeNode current = stack.pop();
+            sum = sumStack.pop();
+            if(current.left == null && current.right == null) {
+                if(sum == 0) {
+                    return true;
+                }
+            }
+            if(current.right != null) {
+                sumStack.add(sum - current.right.val);
+                stack.add(current.right);
+            }
+            if(current.left != null) {
+                sumStack.add(sum - current.left.val);
+                stack.add(current.left);
             }
         }
         return false;
