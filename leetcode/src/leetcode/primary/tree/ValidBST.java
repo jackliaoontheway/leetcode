@@ -4,6 +4,7 @@ import java.util.Stack;
 
 /**
  * 验证二叉搜索树
+ * https://leetcode-cn.com/submissions/detail/39134833/
  */
 public class ValidBST {
 
