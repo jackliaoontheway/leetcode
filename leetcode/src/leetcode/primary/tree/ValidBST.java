@@ -12,41 +12,8 @@ public class ValidBST {
     public static void main(String[] args) {
         TreeNode treeNode = TreeNode.getData();
 
-        System.out.print(new ValidBST().isValidBST3x(treeNode));
+        System.out.print(new ValidBST().isValidBST4(treeNode));
     }
-
-    public boolean isValidBST(TreeNode root, Integer lower, Integer upper) {
-        if (root == null) {
-            return true;
-        }
-        Integer val = root.val;
-        if (lower != null && lower > val) {
-            return false;
-        }
-        if (upper != null && upper < val) {
-            return false;
-        }
-
-        if (!isValidBST(root.right, val, upper)) {
-            return false;
-        }
-        if (!isValidBST(root.left, lower, val)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * 第二种解决方案 使用递归
-     *
-     * @param root
-     * @return
-     */
-    public boolean isValidBST(TreeNode root) {
-        return isValidBST(root, null, null);
-    }
-
 
     /**
      * 第一种解决方案 使用前序遍历
@@ -105,6 +72,38 @@ public class ValidBST {
         }
         return true;
     }
+
+    /**
+     * 第二种解决方案 使用递归
+     *
+     * @param root
+     * @return
+     */
+    public boolean isValidBST(TreeNode root) {
+        return isValidBST(root, null, null);
+    }
+    public boolean isValidBST(TreeNode root, Integer lower, Integer upper) {
+        if (root == null) {
+            return true;
+        }
+        Integer val = root.val;
+        if (lower != null && lower >= val) {
+            return false;
+        }
+        if (upper != null && upper <= val) {
+            return false;
+        }
+
+        if (!isValidBST(root.right, val, upper)) {
+            return false;
+        }
+        if (!isValidBST(root.left, lower, val)) {
+            return false;
+        }
+
+        return true;
+    }
+
 
     /**
      * 第三种解决方案使用 中序遍历
@@ -168,6 +167,51 @@ public class ValidBST {
             }
             inOrderVal = root.val;
             root = root.right;
+        }
+        return true;
+    }
+
+    /**
+     * 第四种解决方案使用 深度优先搜索
+     *
+     * @param root
+     * @return
+     */
+    public boolean isValidBST4(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (root.left == null && root.right == null) {
+            return true;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+        stack.add(root);
+        Stack<Integer> lower = new Stack<>();
+        lower.add(null);
+        Stack<Integer> upper = new Stack<>();
+        upper.add(null);
+
+        while (!stack.isEmpty()) {
+            root = stack.pop();
+            Integer lowerVal = lower.pop();
+            Integer upperVal = upper.pop();
+            if(root == null) {
+                continue;
+            }
+            if(lowerVal != null && root.val <= lowerVal) {
+                return false;
+            }
+            if(upperVal != null && root.val >= upperVal) {
+                return false;
+            }
+
+            stack.push(root.right);
+            lower.push(root.val);
+            upper.push(upperVal);
+
+            stack.push(root.left);
+            lower.push(lowerVal);
+            upper.push(root.val);
         }
         return true;
     }
