@@ -12,7 +12,7 @@ public class ValidBST {
     public static void main(String[] args) {
         TreeNode treeNode = TreeNode.getData();
 
-        System.out.print(new ValidBST().isValidBST2(treeNode));
+        System.out.print(new ValidBST().isValidBST3x(treeNode));
     }
 
     public boolean isValidBST(TreeNode root, Integer lower, Integer upper) {
@@ -39,6 +39,7 @@ public class ValidBST {
 
     /**
      * 第二种解决方案 使用递归
+     *
      * @param root
      * @return
      */
@@ -46,6 +47,13 @@ public class ValidBST {
         return isValidBST(root, null, null);
     }
 
+
+    /**
+     * 第一种解决方案 使用前序遍历
+     *
+     * @param root
+     * @return
+     */
     public boolean isValidBST2(TreeNode root) {
         if (root == null) {
             return true;
@@ -94,6 +102,72 @@ public class ValidBST {
                 stack.add(current.left);
                 mStack.add(current.val);
             }
+        }
+        return true;
+    }
+
+    /**
+     * 第三种解决方案使用 中序遍历
+     *
+     * @param root
+     * @return
+     */
+    public boolean isValidBST3(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (root.left == null && root.right == null) {
+            return true;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+
+        // 这里必须用 -Double.MAX_VALUE , 不能使用 Double.MIN_VALUE
+        double inOrderVal =  - Double.MAX_VALUE;
+
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.add(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if (root.val <= inOrderVal) {
+                return false;
+            }
+            inOrderVal = root.val;
+            root = root.right;
+        }
+        return true;
+    }
+
+    /**
+     * 第三种解决方案使用 中序遍历 不使用 - Double.MAX_VALUE;
+     *
+     * @param root
+     * @return
+     */
+    public boolean isValidBST3x(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        if (root.left == null && root.right == null) {
+            return true;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+
+        // 使用 Integer 会比 double 原始类型性能低
+        Integer inOrderVal =  null;
+        while (root != null || !stack.isEmpty()) {
+            while (root != null) {
+                stack.add(root);
+                root = root.left;
+            }
+            root = stack.pop();
+
+            if (inOrderVal != null && root.val <= inOrderVal) {
+                return false;
+            }
+            inOrderVal = root.val;
+            root = root.right;
         }
         return true;
     }
