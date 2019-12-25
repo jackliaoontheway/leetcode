@@ -22,23 +22,16 @@ public class InsertIntoBST {
     }
 
     public void insertIntoBST(TreeNode root, TreeNode target) {
-
-        if (root == null) {
-            return;
-        }
-
         if (root.val > target.val) {
-            if (root.left == null) {
+            if (root.left == null)
                 root.left = target;
-                return;
-            }
-            insertIntoBST(root.left, target);
+            else
+                insertIntoBST(root.left, target);
         } else {
-            if (root.right == null) {
+            if (root.right == null)
                 root.right = target;
-                return;
-            }
-            insertIntoBST(root.right, target);
+            else
+                insertIntoBST(root.right, target);
         }
     }
 }
